@@ -1,5 +1,6 @@
 package com.sparta.springintroductionpersonalassignment.entity;
 
+import com.sparta.springintroductionpersonalassignment.dto.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Post extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +24,9 @@ public class Post {
     @Column(nullable = false) private String content;
     @Column(nullable = false) private String username;
     @Column(nullable = false) private String password;
-    @CreatedDate private LocalDateTime createdDate;
+
+    public void update(PostRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+    }
 }
