@@ -2,6 +2,7 @@ package com.sparta.springintroductionpersonalassignment;
 
 import com.sparta.springintroductionpersonalassignment.dto.PostRequestDto;
 import com.sparta.springintroductionpersonalassignment.dto.PostResponseDto;
+import com.sparta.springintroductionpersonalassignment.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,10 @@ public class PostController {
     @PutMapping("/posts/{id}")
     public PostResponseDto modifyPost(@PathVariable long id, @RequestBody PostRequestDto requestDto) {
         return postService.modifyPost(id, requestDto);
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public void deletePost(@PathVariable long id, @RequestBody UserRequestDto userRequestDto) {
+        postService.deletePost(id, userRequestDto);
     }
 }
