@@ -3,10 +3,9 @@ package com.sparta.springintroductionpersonalassignment;
 import com.sparta.springintroductionpersonalassignment.dto.PostRequestDto;
 import com.sparta.springintroductionpersonalassignment.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -20,4 +19,8 @@ public class PostController {
         return postService.createPost(requestDto);
     }
 
+    @GetMapping("/posts")
+    public List<PostResponseDto> getPostList() {
+        return postService.getPostList();
+    }
 }
