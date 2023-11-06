@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +27,12 @@ public class PostService {
 
         List<PostResponseDto> responseDtoList = posts.stream().map(PostResponseDto::of).toList();
         return responseDtoList;
+    }
+
+    public PostResponseDto getPost(long id) {
+        Optional<Post> post = postRepository.findById(id);
+
+        if (!post.isPresent()) throw new IllegalArgumentException("해당 ID의 게시글이 존재하지 않습니다.");
+        return PostResponseDto.of(post.get());
     }
 }
